@@ -1,4 +1,5 @@
 // const express = require("express");
+import session from "express-session";
 import mongoose from "mongoose";
 import express from "express";
 import HelloRoutes from "./hello.js";
@@ -11,7 +12,19 @@ mongoose.connect("mongodb://127.0.0.1:27017/kanbas-cs4550-02-fa23");
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+  })
+);
+
+const sessionOptions = {
+  secret: "any string",
+  resave: false,
+  saveUninitialized: false,
+};
+app.use(session(sessionOptions));
 
 app.use(express.json());
 
