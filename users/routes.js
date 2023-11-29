@@ -63,10 +63,9 @@ function UserRoutes(app) {
   };
   const account = (req, res) => {
     const currentUser = req.session["currentUser"];
-    if (!currentUser) {
-      res.status(403).send("Not logged in");
-      return;
-    }
+    // if (!currentUser) {
+    //   return null;
+    // }
     res.json(currentUser);
   };
 
